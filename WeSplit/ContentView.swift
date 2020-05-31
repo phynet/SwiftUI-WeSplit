@@ -15,13 +15,20 @@ struct ContentView: View {
     let tipPercentages = [10, 15, 20, 25, 0]
 
     var body: some View {
-        Form {
-            Section {
-                TextField("Amount", text: $checkAmount)
-            }
-            Section {
-                Text("$\(checkAmount)").keyboardType(.decimalPad)
-            }
+        NavigationView {
+            Form {
+                Section {
+                    TextField("Amount", text: $checkAmount).keyboardType(.decimalPad)
+                    Picker("Number of people", selection: $numberOfPeople) {
+                        ForEach(1 ..< 100) {
+                            Text("\($0) people")
+                        }
+                    }
+                }
+                Section {
+                    Text("$\(checkAmount)")
+                }
+            }.navigationBarTitle("WeSplit")
         }
     }
 }
